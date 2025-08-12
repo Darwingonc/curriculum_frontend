@@ -1,3 +1,6 @@
+# Curriculum_frontend
+Frontend para la creación de un curriculum.
+
 # AlzoNg
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.6.
