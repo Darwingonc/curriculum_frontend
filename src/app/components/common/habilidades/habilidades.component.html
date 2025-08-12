@@ -1,0 +1,39 @@
+<div class="skills">
+    <h3>Habilidades</h3>
+
+    <div class="skill-wrap">
+        <div class="row">
+
+            <div class="col-lg-6 col-md-12" *ngFor="let habilidad of habilidades" style="margin-bottom: 30px">
+                <div class="skill">
+                    <h3>{{habilidad?.nombre_habilidades}}</h3>
+                    <div class="skill-bar skill1 animate__slideInLeft animate__animated" style="width: {{habilidad?.porcentage}}%">
+                        <span class="skill-count1">{{habilidad?.porcentage}}%</span>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="col-lg-6 col-md-12">
+                <div class="skill">
+                    <h3>PHP</h3>
+                    <div class="skill-bar skill4 animate__slideInLeft animate__animated">
+                        <span class="skill-count4">70%</span>
+                    </div>
+                </div>
+
+                <div class="skill">
+                    <h3>TEAM MANAGEMENT</h3>
+                    <div class="skill-bar skill5 animate__slideInLeft animate__animated">
+                        <span class="skill-count5">80%</span>
+                    </div>
+                </div>
+
+                <div class="skill">
+                    <h3>SERVICE OF QUALITY</h3>
+                    <div class="skill-bar skill6 animate__slideInLeft animate__animated">
+                        <span class="skill-count6">90%</span>
+                    </div>
+                </div>
+            </div>-->
+        </div>
+    </div>
+</div>

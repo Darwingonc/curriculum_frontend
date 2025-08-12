@@ -1,0 +1,94 @@
+<!-- Navbar -->
+<div class="navbar-area fixed-top">
+    <div class="mobile-nav">
+        <a routerLink="/" class="logo"><img src="assets/img/logo-three.png" alt="Logo"></a>
+    </div>
+
+    <div class="main-nav three">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-md navbar-light">
+                <a class="navbar-brand" routerLink="/"><img src="assets/img/logo-utrm3.png" alt="Logo"></a>
+
+                <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
+                    <ul class="navbar-nav">
+
+                        <li class="nav-item">
+                            <a routerLink="/modificar-perfil" class="nav-link" routerLinkActive="active"
+                               [routerLinkActiveOptions]="{exact: true}">Modificar perfil</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a routerLink="/" class="nav-link" routerLinkActive="active"
+                               [routerLinkActiveOptions]="{exact: true}">Curriculum</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#perfil">Mi perfil</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#experiencia">Experiencia de trabajo</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#educacion">Educación</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a routerlink="/" class="nav-link" routerLinkActive="active"
+                               [routerLinkActiveOptions]="{exact: true}" href="#habilidades">Habilidades</a>
+                        </li>
+
+                    </ul>
+
+                    <div class="side-nav three" *ngIf="!token">
+                        <a class="login-left" routerLink="/iniciar-sesion"><i class="flaticon-enter"></i> Iniciar Sesión</a>
+                        <a class="job-right" routerLink="/registro">Registrarse</a>
+                    </div>
+
+                    <div class="side-nav three"*ngIf="token" (click)="cerrarSesion()">
+                        <a class="login-left"><i class="flaticon-enter"></i> Logout</a>
+                    </div>
+
+                    <!--<div class="side-nav three" *ngIf="token">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a href="javascript:void(0)" class="nav-link dropdown-toggle">
+                                    {{ identity.name }} {{ identity.lastName }}<i class='bx bx-chevron-down'></i>
+                                </a>
+
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item">
+                                        <a routerLink="/perfil" class="nav-link">
+                                            <i class="bx bx-user-circle"></i>
+                                            Mi perfil
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a routerLink="/postulaciones" class="nav-link">
+                                            <i class="bx bx-bookmark"></i>
+                                            Postulaciones
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a routerLink="/cv" class="nav-link">
+                                            <i class="bx bx-folder"></i>
+                                            Subir CV
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a (click)="logout()" routerLink="" class="nav-link">
+                                            <i class="bx bx-log-out"></i>
+                                            Cerrar Sesión
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>-->
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- End Navbar -->

@@ -1,0 +1,28 @@
+<div class="profile" id="experiencia" >
+    <h3>Mi perfil</h3>
+    <p>{{identity?.descripcion}}</p>
+</div>
+
+<div class="work bottom-item" style="margin-bottom: 0px">
+    <h3>Experiencia de trabajo</h3>
+    <div class="work bottom-item" *ngFor="let experiencia of experiencias" style="margin-bottom: 0px">
+        <ul>
+            <li><img src="assets/img/home-three/title-img.png" alt="Icon">{{experiencia?.pais}}, {{experiencia?.estado}}, {{experiencia?.ciudad}}</li>
+            <li><span>{{experiencia?.fecha_inicio}} - {{experiencia?.fecha_final}}</span></li>
+        </ul>
+        <h4>{{experiencia?.nombre_trabajo}}</h4>
+        <p>{{experiencia?.descripcion}}</p>
+    </div>
+</div>
+
+<div class="work bottom-item" style="margin-bottom: 0px">
+    <h3>Educación</h3>
+    <div class="work bottom-item" *ngFor="let educacion of educaciones" style="margin-bottom: 0px">
+        <ul>
+            <li><img src="assets/img/home-three/title-img.png" alt="Icon"> {{educacion?.nombre_escuela}}, {{educacion?.pais}}, {{educacion?.estado}}, {{educacion?.ciudad}}</li>
+        </ul>
+        <h4>({{educacion?.fecha_inicio}} - {{educacion?.fecha_final}}) → {{educacion?.nivel}}</h4>
+        <p>{{educacion?.descripcion}}</p>
+    </div>
+</div>
+

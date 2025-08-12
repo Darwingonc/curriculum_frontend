@@ -1,0 +1,160 @@
+<!-- Register -->
+<div class="user-form-area">
+    <div class="container-fluid p-0">
+        <div class="row m-0 align-items-center">
+            <div class="col-lg-6 p-0 col-md-12">
+                <div class="user-img">
+                    <img src="assets/img/resgister-bg.jpg" alt="User">
+                </div>
+            </div>
+
+            <div class="col-lg-6 p-0 col-md-12">
+                <div class="user-content">
+                    <div class="top">
+                        <h2>Registro del curriculum</h2>
+
+                        <form [formGroup]="informacionBasica" (ngSubmit)="submitForm(informacionBasica.value)">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Nombres" formControlName="nombre">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Apellidos" formControlName="apellido">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="email" class="form-control" placeholder="Email" formControlName="correo">
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" placeholder="Telefono" formControlName="telefono">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="form-group">
+                                        <select class="form-control w-100" formControlName="genero">
+                                            <option value="" disabled>Género</option>
+                                            <option value="Masculino" >Masculino</option>
+                                            <option value="Femenino">Femenino</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="date" class="form-control" placeholder="Fecha de nacimiento" formControlName="nacimiento">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Ocupación" formControlName="ocupacion">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <textarea type="textfield" rows="3" class="form-control" placeholder="Descripción de ti" formControlName="descripcion"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Pais" formControlName="pais">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Estado" formControlName="estado">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Ciudad" formControlName="ciudad">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Nacionalidad" formControlName="nacionalidad">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" placeholder="Contraseña" formControlName="password"
+                                               (keyup)="checkStrength($event)"
+                                               (click)="toggleInstructions()">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <p class="mb-1"><ngb-progressbar [type]="strongPasswordColor" [value]="strongPassword" height="5px"></ngb-progressbar></p>
+                                        <ul *ngIf="showInstructions" class="animate__animated animate__fadeIn mt-0 list-unstyled">
+                                            <li [ngClass]="{'text-muted' : !numberColor, 'text-success' : numberColor}">
+                                                <i class="fa fa-check-circlefa fa-check-circle"></i> Debe contener al menos 1 número.
+                                            </li>
+                                            <li [ngClass]="{'text-muted' : !lengthColor, 'text-success' : lengthColor}">
+                                                <i class="fa fa-check-circle"></i> Debe contener al menos 6 caracteres.
+                                            </li>
+                                            <li [ngClass]="{'text-muted' : !upperColor, 'text-success' : upperColor}">
+                                                <i class="fa fa-check-circle"></i> Debe contener al menos 1 letra mayúscula.
+                                            </li>
+                                            <li [ngClass]="{'text-muted' : !lowerColor, 'text-success' : lowerColor}">
+                                                <i class="fa fa-check-circle"></i> Debe contener al menos 1 letra minúscula.
+                                            </li>
+                                            <li [ngClass]="{'text-muted' : !symbolColor, 'text-success' : symbolColor}">
+                                                <i class="fa fa-check-circle"></i> Debe contener al menos 1 caractér especial.
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Falta poner validacion al boton de enviar formulario-->
+                            <button class="btn" [disabled]="(informacionBasica.invalid || informacionBasica.disabled)">
+                                <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true" *ngIf="loading" ></span>
+                                Crear cuenta
+                            </button>
+                        </form>
+                    </div>
+
+                    <!--<div class="end">
+                        <ul>
+                            <li><a href="#" target="_blank"><i class='bx bxl-facebook'></i></a></li>
+                            <li><a href="#" target="_blank"><i class='bx bxl-twitter'></i></a></li>
+                            <li><a href="#" target="_blank"><i class='bx bxl-linkedin'></i></a></li>
+                            <li><a href="#" target="_blank"><i class='bx bxl-pinterest-alt'></i></a></li>
+                        </ul>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Register -->

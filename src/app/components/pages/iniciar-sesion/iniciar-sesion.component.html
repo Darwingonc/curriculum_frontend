@@ -1,0 +1,40 @@
+<div class="user-form-area">
+    <div class="container-fluid p-0">
+        <div class="row m-0 align-items-center">
+            <div class="col-lg-6 p-0 col-md-12">
+                <div class="user-img">
+                    <img src="assets/img/resgister-bg.jpg" alt="User">
+                </div>
+            </div>
+
+            <div class="col-lg-6 p-0 col-md-12">
+                <div class="user-content">
+                    <div class="top">
+                        <h2>Ingresa tus datos</h2>
+
+                        <form action="#" [formGroup]="formLogin" (ngSubmit)="submitForm(formLogin.value)">
+                            <div class="form-group">
+                                <input type="email" class="form-control" placeholder="Email" formControlName="correo">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="password" class="form-control" placeholder="Password" formControlName="password">
+                            </div>
+
+                            <!--<button type="submit" class="btn ">Login Here</button>-->
+                            <button class="btn flosun-button secondary-btn theme-color rounded-0 w-100" style="margin-bottom: 10px" [disabled]="(formLogin.invalid || formLogin.disabled)">
+<!--                                <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>-->
+                                Iniciar Sesión
+                            </button>
+
+                            <button class="btn flosun-button secondary-btn theme-color rounded-0 w-100" (click)="registrarse()">
+                                <!--                                <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>-->
+                                Registrarse
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
