@@ -10,7 +10,7 @@
             <li><img src="assets/img/home-three/title-img.png" alt="Icon">{{experiencia?.pais}}, {{experiencia?.estado}}, {{experiencia?.ciudad}}</li>
             <li><span>{{experiencia?.fecha_inicio}} - {{experiencia?.fecha_final}}</span></li>
         </ul>
-        <h4>{{experiencia?.nombre_trabajo}}</h4>
+        <h4>{{experiencia?.nombre_trabajo}} → {{experiencia?.lugar}}</h4>
         <p>{{experiencia?.descripcion}}</p>
     </div>
 </div>
@@ -21,7 +21,7 @@
         <ul>
             <li><img src="assets/img/home-three/title-img.png" alt="Icon"> {{educacion?.nombre_escuela}}, {{educacion?.pais}}, {{educacion?.estado}}, {{educacion?.ciudad}}</li>
         </ul>
-        <h4>({{educacion?.fecha_inicio}} - {{educacion?.fecha_final}}) → {{educacion?.nivel}}</h4>
+        <h4>{{educacion?.nivel}} → ({{educacion?.fecha_inicio}} - {{educacion?.fecha_final}})</h4>
         <p>{{educacion?.descripcion}}</p>
     </div>
 </div>

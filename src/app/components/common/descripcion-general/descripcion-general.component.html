@@ -1,5 +1,34 @@
 
     <div class="widget-area">
+        <div class="owner">
+            <div class="top">
+                <img src="assets/img/home-one/job4.png" alt="Owner">
+                <h3>Información personal</h3>
+                <i class="flaticon-send"></i>
+                <span>{{identity?.pais}}, {{identity?.estado}}, {{identity?.ciudad}}</span>
+            </div>
+
+            <div class="information widget-item">
+                <ul>
+                    <li>
+                        <img src="assets/img/job-details-icon.png" alt="Details">
+                        <h4>Telefono</h4>
+                        <a href="tel:+34561232349987">{{identity?.telefono}}</a>
+                    </li>
+                    <li>
+                        <img src="assets/img/job-details-icon.png" alt="Details">
+                        <h4>Email</h4>
+                        <a href="mailto:hello@alzo.com">{{identity?.correo}}</a>
+                    </li>
+                    <li>
+                        <img src="assets/img/job-details-icon.png" alt="Details">
+                        <h4>Ocupación</h4>
+                        <a href="#" target="_blank">{{identity?.ocupacion}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
         <div class="information widget-item">
             <h3>Descripción general</h3>
 
@@ -32,37 +61,8 @@
             </ul>
         </div>
 
-        <div class="owner">
-            <div class="top">
-                <img src="assets/img/home-one/job4.png" alt="Owner">
-                <h3>Información personal</h3>
-                <i class="flaticon-send"></i>
-                <span>{{identity?.pais}}, {{identity?.estado}}, {{identity?.ciudad}}</span>
-            </div>
-
-            <div class="information widget-item">
-                <ul>
-                    <li>
-                        <img src="assets/img/job-details-icon.png" alt="Details">
-                        <h4>Telefono</h4>
-                        <a href="tel:+34561232349987">{{identity?.telefono}}</a>
-                    </li>
-                    <li>
-                        <img src="assets/img/job-details-icon.png" alt="Details">
-                        <h4>Email</h4>
-                        <a href="mailto:hello@alzo.com">{{identity?.correo}}</a>
-                    </li>
-                    <li>
-                        <img src="assets/img/job-details-icon.png" alt="Details">
-                        <h4>Ocupacion</h4>
-                        <a href="#" target="_blank">{{identity?.ocupacion}}</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="download widget-item" id="habilidades">
+        <!--<div class="download widget-item" id="habilidades">
             <a class="right" routerLink="/contact">Contactame</a>
-        </div>
+        </div>-->
     </div>
 

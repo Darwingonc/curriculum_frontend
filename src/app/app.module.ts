@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -16,10 +16,13 @@ import { NavbarStyleThreeComponent} from './components/common/navbar-style-three
 import { AppComponent } from './app.component';
 import { PagesModule } from './components/pages/pages.module';
 import { CommonModuleModule} from './components/common/common-module.module';
+import {JwtInterceptor} from './interceptors/jwtInterceptor';
+import { AlertaComponent } from './shared/alerta/alerta.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    AlertaComponent,
     /*FooterStyleTwoComponent,
     NavbarStyleThreeComponent,
     FaqComponent,
@@ -39,7 +42,13 @@ import { CommonModuleModule} from './components/common/common-module.module';
         ArchwizardModule,
         CommonModuleModule,
     ],
-  providers: [],
+  providers: [
+      {
+          provide: HTTP_INTERCEPTORS,
+          useClass: JwtInterceptor,
+          multi: true
+      }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

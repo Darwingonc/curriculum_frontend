@@ -8,7 +8,7 @@ import { UsuarioService } from '../../services/usuario-service';
 })
 export class HabilidadesComponent implements OnInit {
 
-    public id: any;
+    public idUser: any;
     public habilidades: any;
 
   constructor(
@@ -16,17 +16,21 @@ export class HabilidadesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-      this.id = this.usuarioServicio.getIdFromLocalStorage();
-      this.encontrarHabilidades(this.id);
+      this.idUser = this.usuarioServicio.getIdFromLocalStorage();
+      console.log('ID del usuario:', this.idUser);
+      this.encontrarHabilidades(this.idUser);
   }
 
-    async encontrarHabilidades(id) {
+    async encontrarHabilidades(idUser: any): Promise<void>{
         const data = {
-            id_perfil: id,
+            id_perfil: this.idUser,
         };
         this.usuarioServicio.encontrar_habilidad(data).then((query: any) => {
+            console.log(data);
             if (query.ok){
                 this.habilidades = query.data;
+                console.log('mensaje');
+                console.log(this.habilidades);
             } else{
                 alert('ocurrio un error');
             }

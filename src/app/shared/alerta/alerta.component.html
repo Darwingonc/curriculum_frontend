@@ -1,0 +1,6 @@
+<div *ngFor="let msg of mensajes" class="alerta" [ngClass]="[msg.tipo]">
+    <span>{{ msg.texto }}</span>
+    <button type="button" class="cerrar" (click)="cerrar(msg)">×</button>
+</div>
+
+

@@ -10,6 +10,7 @@ export class DescripcionGeneralComponent implements OnInit {
 
     public id: any;
     public identity: any;
+    public token: any;
 
   constructor(
       private usuarioServicio: UsuarioService,
@@ -17,18 +18,22 @@ export class DescripcionGeneralComponent implements OnInit {
 
   ngOnInit(): void {
       this.id = this.usuarioServicio.getIdFromLocalStorage();
-      this.encontrarUsuario(this.id);
+      this.token = this.usuarioServicio.getTokenFromLocalStorage();
+      this.encontrarUsuario();
   }
 
-    async encontrarUsuario(id) {
-        const data = {
-            id: id,
-        };
-        this.usuarioServicio.encontrar_perfil(data).then((query: any) => {
-            if (query.ok){
-                this.identity = query.data;
-            } else{
-                alert('ocurrio un error');
+    encontrarUsuario(): void {
+        this.usuarioServicio.encontrar_perfil().subscribe({
+            next: (query: any) => {
+                if (query.ok) {
+                    this.identity = query.data;
+                } else {
+                    alert('Ocurrió un error al obtener perfil');
+                }
+            },
+            error: (err) => {
+                console.error('Error al obtener perfil', err);
+                //alert('Error en el servidor');
             }
         });
     }

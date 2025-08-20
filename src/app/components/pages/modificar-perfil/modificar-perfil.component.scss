@@ -1,0 +1,95 @@
+/* Centrar modal verticalmente */
+.modal-dialog {
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.modal-content {
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3); // sombra más pronunciada
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+        transform: translateY(-4px); // efecto “flotante” al pasar el mouse
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+    }
+
+    .modal-header {
+        background-color: #221668;
+        color: white;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+
+
+        .modal-title {
+            font-weight: bold;
+            font-size: 1.25rem;
+        }
+
+        // Botón X rojo
+        .btn-close {
+            width: 24px;  // antes era 16px aprox
+            height: 24px;
+            opacity: 1;
+            filter: invert(28%) sepia(86%) saturate(7463%) hue-rotate(345deg) brightness(101%) contrast(103%);
+
+            &:hover {
+                filter: invert(18%) sepia(85%) saturate(7463%) hue-rotate(345deg) brightness(95%) contrast(103%);
+            }
+        }
+    }
+
+    .modal-body {
+        display: flex;
+        flex-direction: column;
+        gap: 12px; // separación entre campos
+
+        label {
+            color: #221668;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .form-control {
+            border-radius: 8px;
+            margin-bottom: 12px;
+            border: 1px solid #ccc;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+            &:focus {
+                border-color: #fe4a55;
+                box-shadow: 0 0 5px rgba(34, 22, 104, 0.4);
+            }
+        }
+    }
+
+    .modal-footer {
+        border-top: none;
+
+        .btn-primary {
+            background-color: #221668;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 16px;
+
+            &:hover {
+                background-color: #1a1155;
+            }
+        }
+
+        .btn-secondary {
+            background-color: #fe4a55;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 16px;
+
+            &:hover {
+                background-color: #e23c46;
+            }
+        }
+    }
+}
+
+

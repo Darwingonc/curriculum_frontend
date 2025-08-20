@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {UsuarioService} from '../../services/usuario-service';
-import {RouterModule, Router} from '@angular/router';
-import {any} from 'codelyzer/util/function';
-import {deserialize, serialize} from 'jsonapi-fractal';
+import { Router} from '@angular/router';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {MensajeService} from '../../services/mensaje.service';
 
 @Component({
   selector: 'app-iniciar-sesion',
@@ -12,15 +11,15 @@ import {FormGroup, FormControl, Validators} from '@angular/forms';
 })
 export class IniciarSesionComponent implements OnInit {
 
-  constructor(
+    constructor(
       private userService: UsuarioService,
       private router: Router,
-  ) { }
+      private mensajeService: MensajeService,
+) {}
 
     public id: any;
     public token;
     public identity: any;
-    public res: any;
 
     formLogin = new FormGroup({
         correo: new FormControl('', [Validators.required, Validators.email]),
@@ -35,20 +34,18 @@ export class IniciarSesionComponent implements OnInit {
           correo: form.correo,
           password: form.password,
       };
-      this.userService.iniciarSesion(data).then((query: any) => {
-          if (query.ok){
-              console.log(query);
-              this.token = query.token;
-              this.id = query.data.id;
-              localStorage.setItem('token', this.token);
-              localStorage.setItem('id', this.id);
-              this.router.navigate(['modificar-perfil']);
-          } else{
-              alert('los datos estan mal');
-              console.log('datos malos');
+      this.userService.iniciarSesion(data).subscribe({
+          next: (res: any) => {
+              if (res.ok) {
+                  // Login exitoso
+                  localStorage.setItem('token', res.token);
+                  localStorage.setItem('id', res.data.id);
+                  this.router.navigate(['modificar-perfil']);
+              }
+          },
+          error: (err: any) => {
           }
-      }
-      );
+      });
   }
 
   registrarse(){

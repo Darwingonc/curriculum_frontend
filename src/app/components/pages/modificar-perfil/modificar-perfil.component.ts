@@ -30,10 +30,7 @@ export class ModificarPerfilComponent implements OnInit {
   ngOnInit(): void {
       this.token = this.usuarioServicio.getTokenFromLocalStorage();
       this.id = this.usuarioServicio.getIdFromLocalStorage();
-      this.encontrarUsuario(this.id);
-      this.encontrarEducaciones(this.id);
-      this.encontrarHabilidades(this.id);
-      this.encontrarExperiencias(this.id);
+      this.encontrarUsuario();
   }
 
 
@@ -70,16 +67,23 @@ export class ModificarPerfilComponent implements OnInit {
         });
     }
 
-    async encontrarUsuario(form) {
-        const data = {
-            id: form,
-        };
-        this.usuarioServicio.encontrar_perfil(data).then((query: any) => {
-            if (query.ok){
-                this.identity = query.data;
-                this.inicializarInformacion(this.identity);
-            } else{
-                alert('ocurrio un error');
+    encontrarUsuario(): void {
+        this.usuarioServicio.encontrar_perfil().subscribe({
+            next: (query: any) => {
+                console.log(query);
+                if (query.ok) {
+                    this.identity = query.data;
+                    this.inicializarInformacion(this.identity);
+                    this.experiencias = this.identity.Experiencias;
+                    this.educacion = this.identity.Educaciones;
+                    this.habilidad = this.identity.Habilidades;
+                } else {
+                    alert('Ocurrió un error al obtener el perfil');
+                }
+            },
+            error: (err) => {
+                console.error('Error al obtener perfil', err);
+                //alert('Error en el servidor');
             }
         });
     }
@@ -102,9 +106,10 @@ export class ModificarPerfilComponent implements OnInit {
         };
         this.usuarioServicio.actualizar_perfil(this.token, data).subscribe(
             res => {
-                    window.location.reload();
+                console.log(res);
+                alert('Se actualizó la información correctamente');
+                this.encontrarUsuario();
         }, error => {
-                alert('token no valido');
             });
     }
 
@@ -123,19 +128,6 @@ export class ModificarPerfilComponent implements OnInit {
         fecha_final: new FormControl('', Validators.required),
     });
 
-    async encontrarExperiencias(form) {
-        const data = {
-            id_perfil: form,
-        };
-        this.usuarioServicio.encontrar_experiencias(data).then((query: any) => {
-            if (query.ok){
-                this.experiencias = query.data;
-            } else{
-                alert('ocurrio un error');
-            }
-        });
-    }
-
     async actualizarExperiencias(form){
         const data = {
             id: form.id,
@@ -152,8 +144,10 @@ export class ModificarPerfilComponent implements OnInit {
         };
         this.usuarioServicio.actualizar_experiencia(this.token, data).subscribe(
             res => {
-                window.location.reload();
-                this.router.navigate(['v-pills-profesional-tab'] );
+                this.encontrarUsuario();
+                alert('Se actualizó la experiencia de trabajo correctamente');
+                /*window.location.reload();
+                this.router.navigate(['v-pills-profesional-tab'] );*/
             }, error => {
                 alert('token no valido');
             });
@@ -174,7 +168,8 @@ export class ModificarPerfilComponent implements OnInit {
         };
         this.usuarioServicio.crear_experienia(this.token, data).subscribe(
             res => {
-                this.encontrarExperiencias(this.id);
+                this.encontrarUsuario();
+                alert('Se creo la experiencia correctamente');
             }, error => {
                 alert('token no valido');
             });
@@ -196,7 +191,8 @@ export class ModificarPerfilComponent implements OnInit {
             };
             this.usuarioServicio.eliminar_experiencia(this.token, data).subscribe(
                 res => {
-                    this.encontrarExperiencias(this.id);
+                    this.encontrarUsuario();
+                    alert('Experiencia eliminada correctamente');
                 }, error => {
                     alert('token no valido');
                 });
@@ -218,7 +214,7 @@ export class ModificarPerfilComponent implements OnInit {
     });
 
 
-    async encontrarEducaciones(form) {
+    /*async encontrarEducaciones(form) {
         const data = {
             id_perfil: form,
         };
@@ -229,7 +225,7 @@ export class ModificarPerfilComponent implements OnInit {
                 alert('ocurrio un error');
             }
         });
-    }
+    }*/
 
     async crearEducaciones(form){
         const data = {
@@ -245,7 +241,8 @@ export class ModificarPerfilComponent implements OnInit {
         };
         this.usuarioServicio.crear_educacion(this.token, data).subscribe(
             res => {
-                this.encontrarEducaciones(this.id);
+                this.encontrarUsuario();
+                alert('Se creo la educación correctamente');
             }, error => {
                 alert('token no valido');
             });
@@ -267,7 +264,8 @@ export class ModificarPerfilComponent implements OnInit {
         };
         this.usuarioServicio.actualizar_educacion(this.token, data).subscribe(
             res => {
-                window.location.reload();
+                this.encontrarUsuario();
+                alert('Se actualizó la educación correctamente');
             }, error => {
                 alert('token no valido');
             });
@@ -290,7 +288,8 @@ export class ModificarPerfilComponent implements OnInit {
             };
             this.usuarioServicio.eliminar_educacion(this.token, data).subscribe(
                 res => {
-                    this.encontrarEducaciones(this.id);
+                    this.encontrarUsuario();
+                    alert('Educación eliminada correctamente');
                 }, error => {
                     alert('token no valido');
                 });
@@ -305,19 +304,6 @@ export class ModificarPerfilComponent implements OnInit {
         porcentage: new FormControl('', Validators.required ),
     });
 
-    async encontrarHabilidades(form) {
-        const data = {
-            id_perfil: form,
-        };
-        this.usuarioServicio.encontrar_habilidad(data).then((query: any) => {
-            if (query.ok){
-                this.habilidad = query.data;
-                /*this.inicializarHabilidades(this.habilidad);*/
-            } else{
-                alert('ocurrio un error');
-            }
-        });
-    }
 
     async actualizarHabilidades(form) {
         const data = {
@@ -344,8 +330,9 @@ export class ModificarPerfilComponent implements OnInit {
             };
             this.usuarioServicio.eliminar_habilidad(this.token, data).subscribe(
                 res => {
-                    this.encontrarHabilidades(this.id);
-                }, error => {
+                    this.encontrarUsuario();
+                    alert('Habilidad eliminada correctamente');
+                    }, error => {
                     alert('token no valido');
                 });
         }

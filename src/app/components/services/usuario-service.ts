@@ -17,8 +17,8 @@ export class UsuarioService {
       this.url = environment.apiUrl;
   }
 
-  async iniciarSesion(data: any) {
-      const query = this.httpClient.post(this.url + '/login', data).toPromise() ;
+  iniciarSesion(data: any) {
+      const query = this.httpClient.post(this.url + '/login', data);
       return query;
   }
 
@@ -27,12 +27,10 @@ export class UsuarioService {
         return query;
     }
 
+    encontrar_perfil(): Observable<any> {
+        return this.httpClient.get(`${this.url}/encontrar_perfil`);
+    }
 
-
-  async encontrar_perfil(data: any) {
-      const query = this.httpClient.post(this.url + '/encontrar_perfil', data).toPromise();
-      return query;
-  }
 
     async encontrar_experiencias(data: any) {
         const query = this.httpClient.post(this.url + '/encontrar_experiencias', data).toPromise();
@@ -121,17 +119,19 @@ export class UsuarioService {
         return this.id;
     }
 
-    public getTokenFromLocalStorage(): any {
+    getTokenFromLocalStorage(): string {
         const token = localStorage.getItem('token');
 
-        if (token != null) {
-            this.token = token;
-        } else {
-            this.token = null;
+        if (token) {
+            return token;
         }
 
-        return this.token;
+        return null;
     }
+
+    clearToken(): void {
+        localStorage.removeItem('token');
+   }
 
   checkAuth (){
       return false;

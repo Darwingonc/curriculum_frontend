@@ -13,8 +13,8 @@ import {AuthGuard} from '../services/auth.guard';
 const routes: Routes = [
     { path: '',
       children: [
-          {path: '', canActivate: [AuthGuard], component: HomeComponent},
-          {path: 'iniciar-sesion', canActivate: [], component: IniciarSesionComponent},
+          {path: '', component: HomeComponent},
+          {path: 'iniciar-sesion', component: IniciarSesionComponent},
           {path: 'registro', component: RegistroComponent},
           {path: 'curriculum', canActivate: [AuthGuard], component: CurriculumComponent},
           {path: 'modificar-perfil', canActivate: [AuthGuard], component: ModificarPerfilComponent},
